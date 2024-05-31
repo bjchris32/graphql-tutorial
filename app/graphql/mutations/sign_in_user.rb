@@ -19,6 +19,8 @@ module Mutations
       # use Ruby on Rails - ActiveSupport::MessageEncryptor, to build a token
       crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
       token = crypt.encrypt_and_sign("user-id:#{ user.id }")
+      # store the token into session for future validation
+      context[:session][:token] = token
 
       { user: user, token: token }
     end
