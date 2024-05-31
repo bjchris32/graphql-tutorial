@@ -44,6 +44,7 @@ GEM
       tzinfo (~> 1.1)
     arel (9.0.0)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
@@ -175,6 +176,7 @@ PLATFORMS
   arm64-darwin-23
 
 DEPENDENCIES
+  bcrypt (~> 3.1.13)
   bootsnap (>= 1.1.0)
   byebug
   graphiql-rails (= 1.7.0)
