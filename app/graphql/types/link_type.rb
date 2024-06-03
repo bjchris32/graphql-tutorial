@@ -8,5 +8,6 @@ module Types
     # "method" option remaps field to an attribute of Link model
     # refer to: https://graphql-ruby.org/fields/introduction#field-resolution
     field :posted_by, UserType, null: true, method: :user
+    field :votes, [VoteType], null: false
   end
 end
