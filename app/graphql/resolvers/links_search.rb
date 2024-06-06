@@ -1,6 +1,21 @@
 require 'search_object'
 require 'search_object/plugin/graphql'
 
+# example with filter:
+# query {
+#   allLinks(filter: { descriptionContains: "Awe", OR: [{urlContains: "bj"}] }) {
+#     url
+#     description
+#   }
+# }
+
+# example with pagination
+# query {
+#   allLinks(first: 3, skip: 2, filter: { descriptionContains: "Awe", OR: [{urlContains: "bj"}] }) {
+#     url
+#     description
+#   }
+# }
 class Resolvers::LinksSearch
   include SearchObject.module(:graphql)
 
@@ -15,6 +30,8 @@ class Resolvers::LinksSearch
   end
 
   option :filter, type: LinkFilter, with: :apply_filter
+  option :first, type: types.Int, with: :apply_first
+  option :skip, type: types.Int, with: :apply_skip
 
   def apply_filter(scope, value)
     branches = normalize_filters(value).reduce { |a, b| a.or(b) }
@@ -32,13 +49,12 @@ class Resolvers::LinksSearch
 
     branches
   end
+
+  def apply_first(scope, value)
+    scope.limit(value)
+  end
+
+  def apply_skip(scope, value)
+    scope.offset(value)
+  end
 end
-
-# example:
-
-# query {
-#   allLinks(filter: { descriptionContains: "Awe", OR: [{urlContains: "bj"}] }) {
-#     url
-#     description
-#   }
-# }
