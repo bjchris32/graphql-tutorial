@@ -1,24 +1,13 @@
-# README
+# graphql-tutorial
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is project is based on the tutorial: https://www.howtographql.com/
 
-Things you may want to cover:
+## Take away
+GraphQL is used as a middleware between the application and database layer to achieve the following goals
+* avoid overfetching or underfetching data in frontend.
+* separate frontend and backend work at the beginning when declaring the graphql schema.
+* do not need to make extra efforts in maintaining responses in api endpoints whenever frontend requires more data fields already in backend.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Future works
+* Immplement frontend with react framework in the project
+* Figure out how to use relay
