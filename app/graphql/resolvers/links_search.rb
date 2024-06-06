@@ -18,7 +18,6 @@ class Resolvers::LinksSearch
 
   def apply_filter(scope, value)
     branches = normalize_filters(value).reduce { |a, b| a.or(b) }
-    puts "branches = #{branches.inspect}"
     scope.merge branches
   end
 
@@ -26,8 +25,6 @@ class Resolvers::LinksSearch
     scope = Link.all
     scope = scope.where('description LIKE ?', "%#{value[:description_contains]}%") if value[:description_contains]
     scope = scope.where('url LIKE ?', "%#{value[:url_contains]}%") if value[:url_contains]
-
-    puts "scope = #{scope.inspect}"
 
     branches << scope
 
